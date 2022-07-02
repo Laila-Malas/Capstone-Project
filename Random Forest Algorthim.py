@@ -110,7 +110,7 @@ rf.fit(X_train,Y_train)
 y_pred=rf.predict(X_test)
 labels=[0,1]
 from sklearn.metrics import confusion_matrix,roc_curve
-cm=confusion_matrix(Y_test,y_pred,labels)
+cm=confusion_matrix(Y_test,y_pred)
 print('Accuracy: ' + str(np.round(100*float(cm[0][0]+cm[1][1])/float((cm[0][0]+cm[1][1] + cm[1][0] + cm[0][1])),2))+'%')
 print('Precsion: ' + str(np.round(100*float((cm[1][1]))/float((cm[0][1]+cm[1][1])),2))+'%')
 print('Recall: ' + str(np.round(100*float((cm[1][1]))/float((cm[1][0]+cm[1][1])),2))+'%')
