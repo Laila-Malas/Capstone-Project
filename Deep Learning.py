@@ -57,6 +57,7 @@ for i,pred in enumerate(attributes):
     plt.ylabel("Percent of Flights that arrive late")
     plt.title(pred)
     plt.legend().remove()
+
 #Label Encoding
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
@@ -107,6 +108,9 @@ sc=StandardScaler()
 X_train=sc.fit_transform(X_train)
 X_test=sc.fit_transform(X_test)
 
+
+
+
 #Build The deep Learning Model
 from keras.models import Sequential
 from keras.layers import Dense,Dropout
@@ -126,7 +130,7 @@ y_pred=model.predict(X_test)
 labels=[0,1]
 y_pred=y_pred>0.5
 from sklearn.metrics import confusion_matrix,roc_curve
-cm=confusion_matrix(Y_test,y_pred,labels)
+cm=confusion_matrix(Y_test,y_pred)
 print('Accuracy: ' + str(np.round(100*float(cm[0][0]+cm[1][1])/float((cm[0][0]+cm[1][1] + cm[1][0] + cm[0][1])),2))+'%')
 print('Precsion: ' + str(np.round(100*float((cm[1][1]))/float((cm[0][1]+cm[1][1])),2))+'%')
 print('Recall: ' + str(np.round(100*float((cm[1][1]))/float((cm[1][0]+cm[1][1])),2))+'%')
