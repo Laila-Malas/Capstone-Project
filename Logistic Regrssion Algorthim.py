@@ -50,7 +50,7 @@ avglate= np.sum(data["ARR_DEL15"])/len(data["ARR_DEL15"])
 attributes=["MONTH","DAY_OF_WEEK","DAY_OF_MONTH","DEP_TIME_BLK","ARR_TIME_BLK","MKT_UNIQUE_CARRIER",
             "ARR_DELAY_GROUP","DEP_DELAY_GROUP"]
 for i,pred in enumerate(attributes):
-    plt.figure(i,figsaize=(15,5))
+    plt.figure(i,figsize=(15,5))
     group=data.groupby([pred],as_index=False).aggregate(np.mean)[[pred,"ARR_DEL15"]]
     group.sort_values(by=pred,inplace=True)
     group.plot.bar(x=pred,y="ARR_DEL15")
@@ -58,6 +58,7 @@ for i,pred in enumerate(attributes):
     plt.ylabel("Percent of Flights that arrive late")
     plt.title(pred)
     plt.legend().remove()
+
 #Label Encoding
 from sklearn.preprocessing import LabelEncoder
 le=LabelEncoder()
@@ -110,7 +111,7 @@ logreg.fit(X_train,Y_train)
 y_pred=logreg.predict(X_test)
 labels=[0,1]
 from sklearn.metrics import confusion_matrix,roc_curve
-cm=confusion_matrix(Y_test,y_pred,labels)
+cm=confusion_matrix(Y_test,y_pred)
 print('Accuracy: ' + str(np.round(100*float(cm[0][0]+cm[1][1])/float((cm[0][0]+cm[1][1] + cm[1][0] + cm[0][1])),2))+'%')
 print('Precsion: ' + str(np.round(100*float((cm[1][1]))/float((cm[0][1]+cm[1][1])),2))+'%')
 print('Recall: ' + str(np.round(100*float((cm[1][1]))/float((cm[1][0]+cm[1][1])),2))+'%')
